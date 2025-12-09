@@ -1,2 +1,2 @@
-# avocadotanzen.github.io
+# avocadotanzer.github.io
 my site
