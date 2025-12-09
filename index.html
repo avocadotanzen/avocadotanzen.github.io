@@ -15,15 +15,22 @@
         <div class="glow-point p3"></div>
     </div>
 
-    <div class="container">
+    <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="#">Works</a>
+        <a href="blog.html">Blog</a>
+        <a href="#">About</a>
+    </nav>
+
+    <div class="container center-container">
         <header class="site-header">
-            <h1 class="logo-text">⚡ hisa</h1> 
+            <h1 class="logo-text">hisa</h1> 
         </header>
 
         <nav class="main-nav">
             <a href="#" class="nav-item">
                 <div class="icon-box">
-                    <img src="https://placehold.co/150x150/2c3e50/white?text=Works" alt="Works Icon">
+                    <img src="https://placehold.co/150x150/1a1a1a/white?text=Works" alt="Works">
                 </div>
                 <div class="text-box">
                     <span class="en">works</span>
@@ -33,7 +40,7 @@
 
             <a href="blog.html" class="nav-item">
                 <div class="icon-box">
-                    <img src="https://placehold.co/150x150/2c3e50/white?text=Blog" alt="Blog Icon">
+                    <img src="https://placehold.co/150x150/1a1a1a/white?text=Blog" alt="Blog">
                 </div>
                 <div class="text-box">
                     <span class="en">blog</span>
@@ -41,9 +48,9 @@
                 </div>
             </a>
 
-            <a href="#about-modal" class="nav-item">
+            <a href="#" class="nav-item">
                 <div class="icon-box">
-                    <img src="https://placehold.co/150x150/2c3e50/white?text=About" alt="About Icon">
+                    <img src="https://placehold.co/150x150/1a1a1a/white?text=About" alt="About">
                 </div>
                 <div class="text-box">
                     <span class="en">about</span>
@@ -52,10 +59,6 @@
             </a>
         </nav>
     </div>
-
-    <div id="about-modal" class="about-section">
-        <h2>About Me</h2>
-        </div>
 
     <script>
         document.addEventListener('mousemove', (e) => {
@@ -66,13 +69,10 @@
             const p2 = document.querySelector('.p2');
             const p3 = document.querySelector('.p3');
 
-            // マウスの位置に合わせて少し遅れて動く演出
-            // 数値を変えると動きの大きさやズレが変わります
             p1.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px)`;
             p2.style.transform = `translate(${x * -0.08}px, ${y * -0.08}px)`; 
             p3.style.transform = `translate(${x * 0.02}px, ${y * 0.02}px)`;
         });
     </script>
-
 </body>
 </html>
