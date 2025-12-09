@@ -25,7 +25,7 @@ a {
 
 a:hover {
     /* 1. 文字自体を少しぼかす */
-    filter: blur(1.5px); 
+    filter: blur(0.7px); 
     
     /* 2. 周囲に白い靄（光）を広げる */
     text-shadow: 
