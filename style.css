@@ -7,13 +7,13 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #050505; /* より深い漆黒 */
+    background-color: #050505;
     color: #ffffff;
     overflow-x: hidden;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; ← 削除: 詳細ページで上詰めにするため */
 }
 
 a {
@@ -24,11 +24,11 @@ a {
 
 a:hover {
     opacity: 1;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5); /* ホバー時に発光 */
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 /* =========================================
-   Interactive Background (マウス追従する光)
+   Interactive Background
    ========================================= */
 .interactive-bg {
     position: fixed;
@@ -44,55 +44,73 @@ a:hover {
 .glow-point {
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px); /* 強くぼかして光のようにする */
+    filter: blur(100px);
     opacity: 0.7;
-    mix-blend-mode: screen; /* 光を重ねる描画モード */
-    transition: transform 0.1s ease-out; /* JavaScriptの動きを滑らかに */
+    mix-blend-mode: screen;
+    transition: transform 0.1s ease-out;
 }
 
-/* 緑の光 (左上配置) */
 .p1 {
-    top: -10%;
-    left: -10%;
-    width: 50vw;
-    height: 50vw;
+    top: -10%; left: -10%; width: 50vw; height: 50vw;
     background: radial-gradient(circle, rgba(46, 204, 113, 0.8), transparent 70%);
 }
-
-/* 紫の光 (右下配置) */
 .p2 {
-    bottom: -10%;
-    right: -10%;
-    width: 60vw;
-    height: 60vw;
+    bottom: -10%; right: -10%; width: 60vw; height: 60vw;
     background: radial-gradient(circle, rgba(155, 89, 182, 0.8), transparent 70%);
 }
-
-/* アクセントの赤 (中央) */
 .p3 {
-    top: 30%;
-    left: 40%;
-    width: 40vw;
-    height: 40vw;
+    top: 30%; left: 40%; width: 40vw; height: 40vw;
     background: radial-gradient(circle, rgba(231, 76, 60, 0.6), transparent 70%);
 }
 
+/* =========================================
+   Top Right Navigation (固定メニュー)
+   ========================================= */
+.top-nav {
+    position: fixed;
+    top: 30px;
+    right: 40px;
+    z-index: 1000;
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.3); /* 少し背景を入れて読みやすく */
+    padding: 10px 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.top-nav a {
+    color: #aaa;
+}
+
+.top-nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
 
 /* =========================================
-   Layout
+   Layout: General
    ========================================= */
 .container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 40px;
-    text-align: center;
-    position: relative; /* 背景より上に表示 */
+    position: relative;
     z-index: 1;
 }
 
-.site-header {
-    margin-bottom: 60px;
+/* トップページ用の中央配置コンテナ */
+.center-container {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
+
+.site-header { margin-bottom: 60px; }
 
 .logo-text {
     font-size: 3rem;
@@ -114,7 +132,6 @@ a:hover {
     align-items: center;
     gap: 15px;
     text-align: left;
-    /* ガラスのような半透明エフェクト */
     background: rgba(255, 255, 255, 0.03);
     padding: 15px 20px;
     border-radius: 15px;
@@ -128,42 +145,88 @@ a:hover {
 }
 
 .icon-box img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
+    width: 80px; height: 80px; object-fit: cover; border-radius: 8px;
 }
 
-.text-box {
-    display: flex;
-    flex-direction: column;
-}
+.text-box { display: flex; flex-direction: column; }
+.text-box .en { font-size: 1.5rem; font-weight: 300; }
+.text-box .jp { font-size: 0.9rem; opacity: 0.6; margin-top: 2px; }
 
-.text-box .en {
-    font-size: 1.5rem;
-    font-weight: 300;
-}
-
-.text-box .jp {
-    font-size: 0.9rem;
-    opacity: 0.6;
-    margin-top: 2px;
-}
-
-/* Blogページなどでの再利用 */
+/* =========================================
+   Layout: Blog List
+   ========================================= */
 .blog-container {
     text-align: left;
     max-width: 800px;
+    padding-top: 100px; /* 固定ヘッダーとの重なり防止 */
 }
+
+.blog-header {
+    margin-bottom: 50px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 20px;
+}
+
 .blog-header h1 {
     font-size: 3rem;
     font-weight: 300;
+    margin: 0 0 20px 0;
 }
 
-/* About Section */
-.about-section {
-    max-width: 600px;
-    margin: 60px auto 0;
-    text-align: center;
-    color: #666;
+/* ブログ説明文のスタイル */
+.blog-description {
+    font-size: 1rem;
+    color: #999;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.blog-list { list-style: none; padding: 0; }
+.blog-list li { margin-bottom: 30px; }
+.blog-list a { display: block; }
+.blog-title { display: block; font-size: 1.4rem; color: #4cd1a3; margin-bottom: 5px; }
+.blog-date { display: block; font-size: 0.9rem; color: #aaaaaa; font-weight: 300; }
+
+/* =========================================
+   Layout: Article Detail (詳細記事)
+   ========================================= */
+.article-container {
+    text-align: left;
+    max-width: 700px;
+    padding-top: 120px;
+}
+
+.article-header {
+    margin-bottom: 40px;
+}
+
+.article-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+}
+
+.article-date {
+    color: #888;
+    font-size: 1rem;
+}
+
+.article-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.article-content h2 {
+    margin-top: 40px;
+    font-size: 1.5rem;
+    border-left: 4px solid #4cd1a3;
+    padding-left: 15px;
+}
+
+.article-footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
