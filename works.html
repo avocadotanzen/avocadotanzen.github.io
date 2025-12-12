@@ -8,30 +8,30 @@
     
     <style>
         /* Worksページ専用の追加CSS */
-        /* 既存のstyle.cssに追記してもOKです */
 
         /* 年ごとのセクション */
         .year-section {
-            margin-bottom: 60px;
+            margin-bottom: 80px; /* 余白を少し広げました */
         }
 
         .year-title {
             font-size: 2.0rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* 薄い区切り線 */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 10px;
             margin-bottom: 30px;
             font-weight: normal;
             letter-spacing: 0.1em;
+            font-family: sans-serif; /* タイトルのフォント指定があれば適宜変更 */
         }
 
         /* 3列グリッドのコンテナ */
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 1列に3つ */
-            gap: 40px 30px; /* 上下40px, 左右30pxの間隔 */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px 30px; /* 上下40px, 左右30px */
         }
 
-        /* レスポンシブ対応（スマホでは1列にする） */
+        /* レスポンシブ: スマホでは1列 */
         @media (max-width: 768px) {
             .works-grid {
                 grid-template-columns: 1fr;
@@ -42,46 +42,51 @@
         .work-item {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            transition: opacity 0.3s;
+        }
+        
+        /* リンク全体のホバー挙動 */
+        .work-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .work-link:hover .work-item {
+            opacity: 0.9;
         }
 
         /* 作品タイトル（画像の上） */
         .work-title {
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1.0rem;
+            font-weight: 600;
             margin: 0;
-            padding-left: 5px; /* 少し視覚調整 */
+            padding-left: 5px;
+            letter-spacing: 0.05em;
         }
 
         /* 角丸の画像ボックス */
         .work-image-box {
             width: 100%;
-            aspect-ratio: 4 / 3; /* 長方形の比率（正方形なら 1/1 に変更） */
-            background-color: rgba(255, 255, 255, 0.1); /* 画像がない時のプレースホルダー色 */
-            border-radius: 15px; /* 角丸の指定 */
-            overflow: hidden; /* 画像が角丸からはみ出ないようにする */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            aspect-ratio: 4 / 3; /* 比率固定 */
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px; /* 角丸 */
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+            position: relative;
         }
 
-        /* ホバー時のエフェクト（少し浮く） */
-        .work-image-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        /* 画像ボックスのホバーエフェクト */
+        .work-link:hover .work-image-box {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
         }
 
-        /* 画像自体の設定 */
         .work-image-box img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 枠いっぱいにトリミングして表示 */
-            display: block;
-        }
-        
-        /* リンクの装飾を消す（画像をクリックさせる場合） */
-        .work-link {
-            text-decoration: none;
-            color: inherit;
+            object-fit: cover;
             display: block;
         }
     </style>
@@ -96,25 +101,24 @@
 
     <nav class="top-nav">
         <a href="index.html">Home</a>
-        <a href="works.html" class="active">Works</a> <a href="blog.html">Blog</a>
+        <a href="works.html" class="active">Works</a>
+        <a href="blog.html">Blog</a>
         <a href="#">About</a>
     </nav>
 
     <div class="container article-container">
         <header class="article-header">
             <h1 class="article-title">Works</h1>
-            <p class="article-date">Portfolio</p>
+            <p class="article-date">Portfolio Archive</p>
         </header>
 
         <article class="article-content">
-            <p>これまでに制作した作品のアーカイブ。</p>
+            <p style="margin-bottom: 60px;">これまでの制作の記録。</p>
 
             <section class="year-section">
                 <h2 class="year-title">2025</h2>
-                
                 <div class="works-grid">
-                    
-                    <a href="work-detail-1.html" class="work-link">
+                    <a href="#" class="work-link">
                         <div class="work-item">
                             <h3 class="work-title">ATRAS (Prototype)</h3>
                             <div class="work-image-box">
@@ -122,42 +126,83 @@
                             </div>
                         </div>
                     </a>
-
                     <a href="#" class="work-link">
                         <div class="work-item">
-                            <h3 class="work-title">GEC Pavilion Proposal</h3>
+                            <h3 class="work-title">#</h3>
                             <div class="work-image-box">
-                                <img src="https://placehold.co/600x450/444/FFF?text=Pavilion" alt="Pavilion">
+                                <img src="https://placehold.co/600x450/444/FFF?text=Pavilion" alt="#">
                             </div>
                         </div>
                     </a>
-
                     <a href="#" class="work-link">
                         <div class="work-item">
-                            <h3 class="work-title">Fungi Meme Graphic</h3>
+                            <h3 class="work-title">#</h3>
                             <div class="work-image-box">
-                                <img src="https://placehold.co/600x450/555/FFF?text=Fungi+Meme" alt="Fungi Meme">
+                                <img src="https://placehold.co/600x450/555/FFF?text=Fungi+Meme" alt="#">
                             </div>
                         </div>
                     </a>
-
                 </div>
             </section>
 
             <section class="year-section">
                 <h2 class="year-title">2024</h2>
                 <div class="works-grid">
-                    
                     <a href="#" class="work-link">
                         <div class="work-item">
-                            <h3 class="work-title">German Sketch</h3>
+                            <h3 class="work-title">#</h3>
                             <div class="work-image-box">
-                                <img src="https://placehold.co/600x450/666/FFF?text=Sketch" alt="Sketch">
+                                <img src="https://placehold.co/600x450/666/FFF?text=Sketches" alt="#">
                             </div>
                         </div>
                     </a>
-                    
-                    </div>
+                    <a href="#" class="work-link">
+                        <div class="work-item">
+                            <h3 class="work-title">#</h3>
+                            <div class="work-image-box">
+                                <img src="https://placehold.co/600x450/777/FFF?text=Hanau+Photo" alt="#">
+                            </div>
+                        </div>
+                    </a>
+                     <a href="#" class="work-link">
+                        <div class="work-item">
+                            <h3 class="work-title">#</h3>
+                            <div class="work-image-box">
+                                <img src="https://placehold.co/600x450/888/FFF?text=Work" alt="#">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="year-section">
+                <h2 class="year-title">2023</h2>
+                <div class="works-grid">
+                    <a href="#" class="work-link">
+                        <div class="work-item">
+                            <h3 class="work-title">Too Many Cooks</h3>
+                            <div class="work-image-box">
+                                <img src="https://placehold.co/600x450/456/FFF?text=Model+Study" alt="Too Many Cooks">
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="work-link">
+                        <div class="work-item">
+                            <h3 class="work-title">#</h3>
+                            <div class="work-image-box">
+                                <img src="https://placehold.co/600x450/567/FFF?text=Zine" alt="#">
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="work-link">
+                        <div class="work-item">
+                            <h3 class="work-title">#</h3>
+                            <div class="work-image-box">
+                                <img src="https://placehold.co/600x450/678/FFF?text=Drawing" alt="#">
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </section>
 
         </article>
@@ -166,3 +211,19 @@
             <a href="index.html">← Back to Home</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            const p1 = document.querySelector('.p1');
+            const p2 = document.querySelector('.p2');
+            const p3 = document.querySelector('.p3');
+
+            if(p1) p1.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px)`;
+            if(p2) p2.style.transform = `translate(${x * -0.08}px, ${y * -0.08}px)`; 
+            if(p3) p3.style.transform = `translate(${x * 0.02}px, ${y * 0.02}px)`;
+        });
+    </script>
+</body>
+</html>
